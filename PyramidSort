@@ -1,0 +1,46 @@
+//1:
+//Разворот односвязного списка:
+//Такой метод принимает на вход голову (начало) связного списка и переворачивает его,
+//меняя связи между узлами. Затем метод возвращает новую голову списка, которая является 
+//последним элементом оригинального списка.
+
+public ListNode reverseLinkedList(ListNode head) {
+    ListNode prev = null;
+    ListNode current = head;
+    ListNode next = null;
+
+    while (current != null) {
+        next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+
+    return prev;
+}
+
+//2:
+//Этот метод также принимает на вход голову связного списка, но в данном случае это двусвязный список. 
+//Он меняет связи между узлами, чтобы список развернулся в обратном порядке. Затем метод возвращает
+//новую голову списка, которая является последним элементом оригинального списка. Для двусвязного списка
+//требуется также поменять ссылки на предыдущий и следующий узлы в каждом узле списка.
+
+public DoublyListNode reverseDoublyLinkedList(DoublyListNode head) {
+    DoublyListNode current = head;
+
+    while (current != null) {
+        DoublyListNode temp = current.prev;
+        current.prev = current.next;
+        current.next = temp;
+
+        if (current.prev == null) {
+            break; // достигнут последний элемент списка
+        }
+
+        current = current.prev;
+    }
+
+    return current;
+}
+
+//Оба этих метода разворачивают связный список во временной сложности O(n), где n - количество узлов в списке.
