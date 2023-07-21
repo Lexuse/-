@@ -1,0 +1,42 @@
+//Этот метод принимает на вход голову связного списка и сортирует его, используя пузырьковую сортировку.
+//Мы продолжаем проходиться по списку и меняем местами два соседних элемента, если они находятся в 
+//неправильном порядке. Этот процесс повторяется до тех пор, пока порядок элементов не будет правильным
+//или пока проход по списку не пройдет без каких-либо обменов элементов.
+//Затем метод возвращает отсортированный связный список. Этот метод имеет временную сложность 
+//O(n^2), где n - количество узлов в списке.
+
+public ListNode bubbleSortLinkedList(ListNode head) {
+    if (head == null || head.next == null) {
+        return head; // список пустой или состоит из одного элемента - уже отсортирован
+    }
+
+    boolean swapped;
+    do {
+        swapped = false;
+        ListNode current = head;
+        ListNode previous = null;
+
+        while (current.next != null) {
+            if (current.val > current.next.val) {
+                ListNode nextNode = current.next;
+                current.next = nextNode.next;
+                nextNode.next = current;
+
+                if (previous != null) {
+                    previous.next = nextNode;
+                } else {
+                    head = nextNode;
+                }
+
+                current = nextNode;
+                swapped = true;
+            }
+
+            previous = current;
+            current = current.next;
+        }
+    } while (swapped);
+
+    return head;
+}
+
