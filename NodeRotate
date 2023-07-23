@@ -16,11 +16,9 @@ class node {
     }
 }
 
-public class LLRBTREE {
+public class NodeRotate {
 
     private static node root = null;
-
-    // Функция для поворота узла против часовой стрелки.
     node rotateLeft(node myNode) {
         System.out.printf("поворот влево!!\n");
         node child = myNode.right;
@@ -31,8 +29,6 @@ public class LLRBTREE {
 
         return child;
     }
-
-    // Функция для поворота узла по часовой стрелке.
     node rotateRight(node myNode) {
         System.out.printf("вращение вправо\n");
         node child = myNode.left;
@@ -49,15 +45,11 @@ public class LLRBTREE {
         }
         return (myNode.color == true);
     }
-
-    // Функция для изменения цвета двух узлы.
     void swapColors(node node1, node node2) {
         boolean temp = node1.color;
         node1.color = node2.color;
         node2.color = temp;
     }
-
-    // вставка в левостороннее Красно-черное дерево.
     node insert(node myNode, int data) {
 // Обычный код вставки для любого двоичного файла
         if (myNode == null) {
@@ -78,7 +70,6 @@ public class LLRBTREE {
         }
 
         if (isRed(myNode.left) && isRed(myNode.left.left)) {
-// Повернуть узел в право
             myNode = rotateRight(myNode);
             swapColors(myNode, myNode.right);
         }
@@ -106,7 +97,7 @@ public class LLRBTREE {
 
     public static void main(String[] args) {
 
-        LLRBTREE node = new LLRBTREE();
+        NodeRotate node = new NodeRotate();
         Scanner scan = new Scanner(System.in);
 
         char ch;
